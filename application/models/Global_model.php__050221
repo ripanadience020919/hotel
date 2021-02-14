@@ -1,0 +1,118 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+class Global_model extends CI_Model 
+{
+    /*public function email_massage_reject($to_email,$message,$subject)
+    {
+       $to  = $to_email; 
+       $headers='';
+       $headers .= 'X-Mailer: PHP/' . phpversion();
+       $headers  = 'MIME-Version: 1.0' . "\r\n";
+       $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+       $headers .= 'From: Statewide Distributors <noreply@sw.wsdev.in/>' . "\r\n";
+       $headers .= "X-Priority: 3\r\n";
+       $headers .= "X-Mailer: PHP". phpversion() ."\r\n";
+       mail($to, $subject, $message, $headers);  
+      return true;
+    }*/
+
+
+    function email_massage($cus_email,$mail_msg,$mail_sub)
+    {
+      /*$config = Array(
+        'protocol' => 'smtp',
+        'smtp_host' => 'mail.wsdev.in',
+        'smtp_port' => 465,
+        'smtp_user' => 'hello@wsdev.in', // change it to yours
+        'smtp_pass' => 'WsRocks!2#4', // change it to yours
+        'mailtype' => 'html',
+        'charset' => 'iso-8859-1',
+        'wordwrap' => TRUE
+      );*/
+      /*echo "<pre>";print_r($cus_email);
+      echo "<pre>";print_r($mail_msg);
+      echo "<pre>";print_r($mail_sub);die;*/
+
+      $config = Array(
+        'protocol' => 'smtp',
+        'smtp_host' => 'ssl://smtp.googlemail.com',
+        'smtp_port' => 465,
+        'smtp_user' => 'wizroomssiliguri@gmail.com',
+        'smtp_pass' => '@2021Travel!',
+        'mailtype'  => 'html', 
+        'charset'   => 'iso-8859-1'
+      );
+      $to_mail = 'wizroomssiliguri@gmail.com';
+      $from_email = $cus_email;
+      // $this->email->set_header('Content-Type', 'text/html');
+      $this->load->library('email', $config);
+      $this->email->set_mailtype("html");
+      $this->email->set_newline("\r\n");
+      $this->email->from($from_email, 'Customer'); // change it to yours
+      $this->email->to($to_mail);// change it to yours
+      $this->email->subject($mail_sub);
+      $this->email->message($mail_msg);
+      $this->email->send();
+
+      /*if($this->email->send())
+      {
+          echo $this->email->print_debugger();
+        //echo show_error($this->email->print_debugger());
+      }
+      else
+      {
+          show_error($this->email->print_debugger());
+      }
+      die;*/
+    }
+
+    function email_massage_new($cus_email,$mail_msg,$mail_sub)
+    {
+      /*$config = Array(
+        'protocol' => 'smtp',
+        'smtp_host' => 'mail.wsdev.in',
+        'smtp_port' => 465,
+        'smtp_user' => 'hello@wsdev.in', // change it to yours
+        'smtp_pass' => 'WsRocks!2#4', // change it to yours
+        'mailtype' => 'html',
+        'charset' => 'iso-8859-1',
+        'wordwrap' => TRUE
+      );*/
+      /*echo "<pre>";print_r($cus_email);
+      echo "<pre>";print_r($mail_msg);
+      echo "<pre>";print_r($mail_sub);die;*/
+
+      $config = Array(
+        'protocol' => 'smtp',
+        'smtp_host' => 'ssl://smtp.googlemail.com',
+        'smtp_port' => 465,
+        'smtp_user' => 'wizroomssiliguri@gmail.com',
+        'smtp_pass' => '@2021Travel!',
+        'mailtype'  => 'html', 
+        'charset'   => 'iso-8859-1'
+      );
+      $to_mail = $cus_email;
+      $from_email = 'wizroomssiliguri@gmail.com';
+      // $this->email->set_header('Content-Type', 'text/html');
+      $this->load->library('email', $config);
+      $this->email->set_mailtype("html");
+      $this->email->set_newline("\r\n");
+      $this->email->from($from_email, 'Hotel Admin'); // change it to yours
+      $this->email->to($to_mail);// change it to yours
+      $this->email->subject($mail_sub);
+      $this->email->message($mail_msg);
+      $this->email->send();
+
+      /*if($this->email->send())
+      {
+          echo $this->email->print_debugger();
+        //echo show_error($this->email->print_debugger());
+      }
+      else
+      {
+          show_error($this->email->print_debugger());
+      }
+      die;*/
+    }
+}
+?>
